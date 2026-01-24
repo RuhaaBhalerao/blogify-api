@@ -1,9 +1,13 @@
-// src/controllers/posts.controller.js
-
-const getAllPosts = (req, res) => {
+export const getAllPosts = (req, res) => {
   res.status(200).json({
-    message: 'Route handled by postController.getAllPosts',
+    message: "Fetching all posts"
   });
 };
 
-module.exports = { getAllPosts };
+export const getPostById = (req, res) => {
+  const postId = req.params.postId;
+
+  res.status(200).json({
+    message: `You requested data for post ID: ${postId}`
+  });
+};
