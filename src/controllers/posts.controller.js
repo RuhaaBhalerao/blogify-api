@@ -1,30 +1,24 @@
-export const getAllPosts = (req, res) => {
-  const { sortBy } = req.query;
+const posts= [
+  {
+id: 1,
+title: 'First Post',
+content: 'This is the content of the first post.',
+  },
+{id: 2, title: 'Second Post', content: 'This is the content of the second post.', }, ];
 
-  let posts = [
-    { id: 2, title: 'My Second Post', date: '2023-10-26' },
-    { id: 1, title: 'My First Post', date: '2023-10-25' }
-  ];
-
-  if (sortBy === 'date') {
-    posts.sort((a, b) => new Date(b.date) - new Date(a.date));
-  }
-
+exports.getAllPosts = (req, res) => {
   res.status(200).json({
     success: true,
-    data: {
-      posts: posts
-    }
+    data: posts
   });
 };
 
-export const getPostById = (req, res) => {
+exports.getPostById = (req, res) => {
   const { postId } = req.params;
+  const post = posts.find(p => p.id === parseInt(postId));
 
   res.status(200).json({
     success: true,
-    data: {
-      postId: postId
-    }
+    data: post || null
   });
 };
