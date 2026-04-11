@@ -1,5 +1,5 @@
 const requestLogger = (req, res, next) => {
-  console.log(`Request Received: ${req.method} ${req.originalUrl}`);
+  console.log(`Request Received: ${req.method} ${req.url}`);
   next();
 };
 

@@ -1,21 +1,29 @@
 const Post = require('../models/post.model');
 
-exports.createPost = async (data) => {
-  return await Post.create(data);
+const getAllPosts = async () => {
+  return await Post.find({});
 };
 
-exports.getAllPosts = async () => {
-  return await Post.find().populate('author', 'username');
+const getPostById = async (id) => {
+  return await Post.findById(id);
 };
 
-exports.getPostById = async (id) => {
-  return await Post.findById(id).populate('author', 'username');
+const createPost = async (postData) => {
+  return await Post.create(postData);
 };
 
-exports.updatePost = async (id, data) => {
-  return await Post.findByIdAndUpdate(id, data, { new: true });
+const updatePost = async (id, updateData) => {
+  return await Post.findByIdAndUpdate(id, updateData, { new: true });
 };
 
-exports.deletePost = async (id) => {
+const deletePost = async (id) => {
   return await Post.findByIdAndDelete(id);
+};
+
+module.exports = {
+  getAllPosts,
+  getPostById,
+  createPost,
+  updatePost,
+  deletePost
 };

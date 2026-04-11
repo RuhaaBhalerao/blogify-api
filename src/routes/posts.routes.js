@@ -1,11 +1,19 @@
 const express = require('express');
 const router = express.Router();
-const postsController = require('../controllers/posts.controller');
 
-router.post('/posts', postsController.createPost);
-router.get('/posts', postsController.getAllPosts);
-router.get('/posts/:id', postsController.getPostById);
-router.patch('/posts/:id', postsController.updatePost);
-router.delete('/posts/:id', postsController.deletePost);
 
+const{
+    getAllPosts,
+    getPostById,
+    createPost,
+    updatePost,
+    deletePost
+} = require('../controllers/posts.controller');
+const { get } = require('mongoose');
+
+router.get('/', getAllPosts);
+router.get('/:id', getPostById);
+router.post('/', createPost);
+router.put('/:id', updatePost);
+router.delete('/:id', deletePost);
 module.exports = router;
